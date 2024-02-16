@@ -1,6 +1,5 @@
 package nsu.maxwell;
 
-import java.util.HashMap;
 import java.util.Map;
 
 public class Main {
@@ -10,7 +9,6 @@ public class Main {
         PagesLoader pagesLoader = new PagesLoader();
 
         String[] files = args[0].split(" ");
-        System.out.println(files);
 
         if (files.length != filesCount) {
             System.out.println("Bad number of arguments. Expected: oldVersionFile, newVersionFile");
