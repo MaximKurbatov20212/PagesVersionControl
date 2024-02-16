@@ -4,18 +4,28 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Main {
+    private static final int filesCount = 2;
+
     public static void main(String[] args) {
-        Map<String, String> oldVersion = new HashMap<>();
-        Map<String, String> newVersion = new HashMap<>();
-        VersionController versionController = new VersionController();
+        PagesLoader pagesLoader = new PagesLoader();
 
-        oldVersion.put("http://localhost:3000/url1", "123");
-        oldVersion.put("http://localhost:3000/url2", "123");
-        oldVersion.put("http://localhost:3000/url3", "123");
+        if (args.length != filesCount) {
+            System.out.println("Bad number of arguments. Expected: oldVersionFile, newVersionFile");
+        }
 
-        newVersion.put("http://localhost:3000/url1", "124");
-        newVersion.put("http://localhost:3000/url4", "123");
+        Map<String, String> oldVersion = pagesLoader.load(args[0]);
+        if (oldVersion == null) {
+            return;
+        }
 
-        System.out.println(MessageFormatter.format(versionController.getChanges(oldVersion, newVersion)));
+        Map<String, String> newVersion = pagesLoader.load(args[1]);
+        if (newVersion == null) {
+            return;
+        }
+
+        VersionComparator versionComparator = new VersionComparator();
+        MessageFormatter messageFormatter = new MessageFormatter();
+
+        System.out.println(messageFormatter.format(versionComparator.getChanges(oldVersion, newVersion)));
     }
 }

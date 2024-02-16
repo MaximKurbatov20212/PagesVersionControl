@@ -1,4 +1,4 @@
-import nsu.maxwell.VersionController;
+import nsu.maxwell.VersionComparator;
 import nsu.maxwell.VersionInfo;
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -12,14 +12,14 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 public class VersionControllerTest {
-    private static VersionController versionController;
+    private static VersionComparator versionComparator;
     private static Map<String, String> oldVersion;
     private static Map<String, String> newVersion;
 
 
     @BeforeClass
     public static void setUp() {
-        versionController = new VersionController();
+        versionComparator = new VersionComparator();
         oldVersion = new HashMap<>();
         newVersion = new HashMap<>();
     }
@@ -32,7 +32,7 @@ public class VersionControllerTest {
 
     @Test
     public void testEmpty() {
-        VersionInfo res = versionController.getChanges(oldVersion, newVersion);
+        VersionInfo res = versionComparator.getChanges(oldVersion, newVersion);
 
         assertEquals(res.addedUrls().size(), 0);
         assertEquals(res.vanishedPages().size(), 0);
@@ -44,7 +44,7 @@ public class VersionControllerTest {
         oldVersion.put("url1", "1");
         newVersion.put("url1", "1");
 
-        VersionInfo res = versionController.getChanges(oldVersion, newVersion);
+        VersionInfo res = versionComparator.getChanges(oldVersion, newVersion);
 
         assertEquals(res.addedUrls().size(), 0);
         assertEquals(res.vanishedPages().size(), 0);
@@ -57,7 +57,7 @@ public class VersionControllerTest {
         oldVersion.put("url2", "1");
         oldVersion.put("url3", "1");
 
-        VersionInfo res = versionController.getChanges(oldVersion, newVersion);
+        VersionInfo res = versionComparator.getChanges(oldVersion, newVersion);
         assertEquals(res.vanishedPages().size(), 3);
     }
 
@@ -66,7 +66,7 @@ public class VersionControllerTest {
         oldVersion.put("url1", "1");
         newVersion.put("url1", "2");
 
-        VersionInfo res = versionController.getChanges(oldVersion, newVersion);
+        VersionInfo res = versionComparator.getChanges(oldVersion, newVersion);
 
         assertEquals(res.editedPages().size(), 1);
     }
@@ -76,7 +76,7 @@ public class VersionControllerTest {
         oldVersion.put("url1", "1");
         newVersion.put("url2", "2");
 
-        VersionInfo res = versionController.getChanges(oldVersion, newVersion);
+        VersionInfo res = versionComparator.getChanges(oldVersion, newVersion);
 
         assertEquals(res.addedUrls().size(), 1);
     }
@@ -87,7 +87,7 @@ public class VersionControllerTest {
         oldVersion.put("url2", "1");
         oldVersion.put("url3", "1");
 
-        VersionInfo res = versionController.getChanges(oldVersion, newVersion);
+        VersionInfo res = versionComparator.getChanges(oldVersion, newVersion);
 
         Set<String> expected = Set.of("url1", "url2", "url3");
 
@@ -104,7 +104,7 @@ public class VersionControllerTest {
         newVersion.put("url2", "2");
         newVersion.put("url3", "2");
 
-        VersionInfo res = versionController.getChanges(oldVersion, newVersion);
+        VersionInfo res = versionComparator.getChanges(oldVersion, newVersion);
 
         Set<String> expected = Set.of("url1", "url2", "url3");
 
@@ -117,7 +117,7 @@ public class VersionControllerTest {
         newVersion.put("url2", "2");
         newVersion.put("url3", "2");
 
-        VersionInfo res = versionController.getChanges(oldVersion, newVersion);
+        VersionInfo res = versionComparator.getChanges(oldVersion, newVersion);
 
         Set<String> expected = Set.of("url1", "url2", "url3");
 
@@ -133,7 +133,7 @@ public class VersionControllerTest {
         newVersion.put("url1", "2");
         newVersion.put("url3", "2");
 
-        VersionInfo res = versionController.getChanges(oldVersion, newVersion);
+        VersionInfo res = versionComparator.getChanges(oldVersion, newVersion);
 
         Set<String> expectedVanished = Set.of("url2");
         Set<String> expectedEdited = Set.of("url1");

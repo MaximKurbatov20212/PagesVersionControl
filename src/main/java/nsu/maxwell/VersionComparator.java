@@ -3,7 +3,7 @@ package nsu.maxwell;
 import java.util.HashSet;
 import java.util.Map;
 
-public class VersionController {
+public class VersionComparator implements MyComparator {
     public VersionInfo getChanges(Map<String, String> oldVersion, Map<String, String> newVersion) {
         VersionInfo versionInfo = new VersionInfo(oldVersion.keySet(), new HashSet<>(), new HashSet<>());
 

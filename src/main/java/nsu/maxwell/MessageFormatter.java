@@ -1,7 +1,7 @@
 package nsu.maxwell;
 
-public class MessageFormatter {
-    static String format(VersionInfo info) {
+public class MessageFormatter implements Formatter {
+    public String format(VersionInfo info) {
        return String.format(
                """
                        Здравствуйте, дорогая и.о. секретаря\s
