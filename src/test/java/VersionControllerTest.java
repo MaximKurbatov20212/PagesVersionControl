@@ -34,9 +34,9 @@ public class VersionControllerTest {
     public void testEmpty() {
         VersionInfo res = versionController.getChanges(oldVersion, newVersion);
 
-        assertEquals(res.added().size(), 0);
-        assertEquals(res.vanished().size(), 0);
-        assertEquals(res.edited().size(), 0);
+        assertEquals(res.addedUrls().size(), 0);
+        assertEquals(res.vanishedPages().size(), 0);
+        assertEquals(res.editedPages().size(), 0);
     }
 
     @Test
@@ -46,9 +46,9 @@ public class VersionControllerTest {
 
         VersionInfo res = versionController.getChanges(oldVersion, newVersion);
 
-        assertEquals(res.added().size(), 0);
-        assertEquals(res.vanished().size(), 0);
-        assertEquals(res.edited().size(), 0);
+        assertEquals(res.addedUrls().size(), 0);
+        assertEquals(res.vanishedPages().size(), 0);
+        assertEquals(res.editedPages().size(), 0);
     }
 
     @Test
@@ -58,7 +58,7 @@ public class VersionControllerTest {
         oldVersion.put("url3", "1");
 
         VersionInfo res = versionController.getChanges(oldVersion, newVersion);
-        assertEquals(res.vanished().size(), 3);
+        assertEquals(res.vanishedPages().size(), 3);
     }
 
     @Test
@@ -68,7 +68,7 @@ public class VersionControllerTest {
 
         VersionInfo res = versionController.getChanges(oldVersion, newVersion);
 
-        assertEquals(res.edited().size(), 1);
+        assertEquals(res.editedPages().size(), 1);
     }
 
     @Test
@@ -78,7 +78,7 @@ public class VersionControllerTest {
 
         VersionInfo res = versionController.getChanges(oldVersion, newVersion);
 
-        assertEquals(res.added().size(), 1);
+        assertEquals(res.addedUrls().size(), 1);
     }
 
     @Test
@@ -91,7 +91,7 @@ public class VersionControllerTest {
 
         Set<String> expected = Set.of("url1", "url2", "url3");
 
-        assertTrue(res.vanished().containsAll(expected));
+        assertTrue(res.vanishedPages().containsAll(expected));
     }
 
     @Test
@@ -108,7 +108,7 @@ public class VersionControllerTest {
 
         Set<String> expected = Set.of("url1", "url2", "url3");
 
-        assertTrue(res.edited().containsAll(expected));
+        assertTrue(res.editedPages().containsAll(expected));
     }
 
     @Test
@@ -121,7 +121,7 @@ public class VersionControllerTest {
 
         Set<String> expected = Set.of("url1", "url2", "url3");
 
-        assertTrue(res.added().containsAll(expected));
+        assertTrue(res.addedUrls().containsAll(expected));
     }
 
 
@@ -139,9 +139,9 @@ public class VersionControllerTest {
         Set<String> expectedEdited = Set.of("url1");
         Set<String> expectedAdded = Set.of("url3");
 
-        assertTrue(res.added().containsAll(expectedAdded));
-        assertTrue(res.edited().containsAll(expectedEdited));
-        assertTrue(res.vanished().containsAll(expectedVanished));
+        assertTrue(res.addedUrls().containsAll(expectedAdded));
+        assertTrue(res.editedPages().containsAll(expectedEdited));
+        assertTrue(res.vanishedPages().containsAll(expectedVanished));
     }
 
 }

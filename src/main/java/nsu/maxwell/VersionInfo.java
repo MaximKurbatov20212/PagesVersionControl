@@ -2,4 +2,4 @@ package nsu.maxwell;
 
 import java.util.Set;
 
-public record VersionInfo(Set<String> vanished,  Set<String> edited,  Set<String> added) {}
+public record VersionInfo(Set<String> vanishedPages, Set<String> editedPages, Set<String> addedUrls) {}

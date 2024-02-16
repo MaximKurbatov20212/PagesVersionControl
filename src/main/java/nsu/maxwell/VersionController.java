@@ -10,12 +10,12 @@ public class VersionController {
         newVersion.forEach((key, value) -> {
             String oldValue = oldVersion.get(key);
 
-            versionInfo.vanished().remove(key);
+            versionInfo.vanishedPages().remove(key);
 
             if (oldValue == null) {
-                versionInfo.added().add(key);
+                versionInfo.addedUrls().add(key);
             } else if (!oldValue.equals(value)) {
-                versionInfo.edited().add(key);
+                versionInfo.editedPages().add(key);
             }
         });
 

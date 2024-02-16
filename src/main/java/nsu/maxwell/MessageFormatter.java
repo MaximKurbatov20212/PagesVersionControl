@@ -16,6 +16,6 @@ public class MessageFormatter {
                        автоматизированная система
                        мониторинга.
                        """,
-               info.vanished(), info.added(), info.edited());
+               info.vanishedPages(), info.addedUrls(), info.editedPages());
     }
 }
