@@ -9,16 +9,19 @@ public class Main {
     public static void main(String[] args) {
         PagesLoader pagesLoader = new PagesLoader();
 
-        if (args.length != filesCount) {
+        String[] files = args[0].split(" ");
+        System.out.println(files);
+
+        if (files.length != filesCount) {
             System.out.println("Bad number of arguments. Expected: oldVersionFile, newVersionFile");
         }
 
-        Map<String, String> oldVersion = pagesLoader.load(args[0]);
+        Map<String, String> oldVersion = pagesLoader.load(files[0]);
         if (oldVersion == null) {
             return;
         }
 
-        Map<String, String> newVersion = pagesLoader.load(args[1]);
+        Map<String, String> newVersion = pagesLoader.load(files[1]);
         if (newVersion == null) {
             return;
         }

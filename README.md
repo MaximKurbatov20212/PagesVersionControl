@@ -7,7 +7,7 @@
     mvn compile
 
 # Запуск
-    mvn exec:java -Dexec.mainClass=nsu.maxwell.Main 
+    mvn exec:java -Dexec.mainClass=nsu.maxwell.Main -Dexec.args="./src/main/resources/old.json ./src/main/resources/new.json" 
 
 # Запуск тестов
     mvn test
